@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hate Speech Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 Hate Speech Detection</h1>
+    <form method="POST" action="/predict">
+      <textarea name="text" placeholder="Enter your text here..." required></textarea>
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <p><strong>Prediction:</strong> <span class="{% if 'Safe' in prediction %}safe{% else %}danger{% endif %}">{{ prediction }}</span></p>
+        <p><strong>Input:</strong> "{{ input_text }}"</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
